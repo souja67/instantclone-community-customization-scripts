@@ -66,6 +66,7 @@ localcli system settings advanced set -o /VSAN/NodeUuid -s ${UUID}
 echo "Configuring Management Network (vmk0) ..."
 localcli network nic up -n vmnic0
 localcli network vswitch standard portgroup add -p "Management Network" -v "vSwitch0"
+localcli network vswitch standard portgroup set -p "Management Network" -v "10"
 localcli network ip interface add -i vmk0 -p "Management Network"
 if [ ${NETWORK_TYPE} == "static" ]; then
     localcli network ip interface ipv4 set -i vmk0 -I ${IP_ADDRESS} -N ${NETMASK} -t static
